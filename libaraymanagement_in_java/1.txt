@@ -1,0 +1,55 @@
+class m
+{
+	public static void main(String[] args) 
+	{
+		studentdata se=new studentdata();	
+		int ch;
+		String key;
+		student s=new student();
+		Scanner scan=new Scanner(System.in);
+		do
+		{
+			System.out.println("enter the choice \n1:add student\n2:fetchall student\n3:modify student\n4:delete student\n5:search student\n6:exit");
+			ch=scan.nextInt();
+			switch(ch)
+			{
+				case 1:	s.readStudent();
+						se.addstudent(s);
+						break;	
+				case 2 :	ArrayList<student> t;
+						t=se.fetchall();
+						for(student d:t)
+						{
+							d.displayStudent();
+						}
+						break;	
+				case 3: 	System.out.println("enter the rollnor to be modifeid:");
+						key=scan.next();
+						se.modifyStudent(key);
+						break;
+				case 4: System.out.println("enter the Student usn number to be deleted:");
+						key=scan.next();	
+						se.deletestudent(key);
+						break;
+				case 5: 	System.out.println("enter the usn to be searched:");
+						key=scan.next();	
+						ArrayList<student> lst=se.searchstudent(key);
+						if(lst.size()==0)
+						{
+							System.out.println("the student record not found");
+						}	
+						else
+						{
+							for(student e:lst)
+							{
+								e.displayStudent();		
+							}
+						}
+						break;
+				case 6:	se.close();
+						break;
+					
+			}
+		}while(ch!=6);		
+	}
+}
